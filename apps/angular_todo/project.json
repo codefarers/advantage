@@ -1,32 +1,27 @@
 {
-  "name": "angular-demo",
+  "name": "angular_todo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/angular-demo/src",
+  "sourceRoot": "apps/angular_todo/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/angular-demo",
-        "browser": "apps/angular-demo/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "apps/angular-demo/tsconfig.app.json",
+        "outputPath": "dist/apps/angular_todo",
+        "index": "apps/angular_todo/src/index.html",
+        "main": "apps/angular_todo/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/angular_todo/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/angular-demo/public"
+            "input": "apps/angular_todo/public"
           }
         ],
-        "styles": [
-          "apps/angular-demo/src/styles.scss"
-        ]
+        "styles": ["apps/angular_todo/src/styles.css"]
       },
       "configurations": {
         "production": {
@@ -45,30 +40,33 @@
           "outputHashing": "all"
         },
         "development": {
+          "buildOptimizer": false,
           "optimization": false,
+          "vendorChunk": true,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular/build:dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "angular-demo:build:production"
+          "buildTarget": "angular_todo:build:production"
         },
         "development": {
-          "buildTarget": "angular-demo:build:development"
+          "buildTarget": "angular_todo:build:development"
         }
       },
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
+      "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "angular-demo:build"
+        "buildTarget": "angular_todo:build"
       }
     },
     "lint": {
@@ -76,26 +74,18 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/apps/angular-demo"
+        "reportsDirectory": "../../coverage/apps/angular_todo"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "angular-demo:build",
-        "staticFilePath": "dist/apps/angular-demo/browser",
+        "buildTarget": "angular_todo:build",
         "spa": true
       }
-    }
-  },
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
     }
   }
 }
