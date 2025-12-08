@@ -1,0 +1,21 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="shaddow">
+        <h1 class="mb-3 display-6 text-info-emphasis fw-bolder text-center">Have a todo?</h1>
+        <div class="input-group d-flex gap-2 mb-3">
+            <input class="form-control rounded" [value]="userTodo()" (input)="userTodo.set($any($event.target).value)" type="text" placeholder="Create todo" />
+            <button class="btn btn-primary rounded" (click)="createTodo()">Add To list</button>
+        </div>
+        <div>
+            <ul class="d-flex flex-column">
+                @for (item of todoItems(); track item){
+                <div class="form-check d-flex align-items-center gap-3">
+                    <input type="checkbox" class="form-check-input" [id]="item" [value]="item" (change)="checkItem(item)">
+                    <label class="form-check-label text-capitalize fs-5 text-muted" [for]="item"
+                    [class.text-decoration-line-through] = "checkedItems().includes(item)"
+                    >{{item}}</label>
+                </div>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
