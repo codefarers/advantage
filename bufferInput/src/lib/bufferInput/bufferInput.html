@@ -1,0 +1,17 @@
+<form class="form-group" [formGroup]="loginForm" (submit)="submitLoginForm()">
+    <label for="user_password">Enter Password (numeric keys only):</label>
+    <input class="form-control" formControlName="userPassword" id="user_password" type="password">
+    @if (loginForm.get('userPassword'); as passwordCtrl){
+    @if (passwordCtrl.hasError('required') && passwordCtrl.touched){
+    <small class="text-danger">Please enter a password</small>
+    }
+    @if (passwordCtrl.hasError('minlength') && passwordCtrl.touched){
+    <small class="text-danger">Password should be at least 6 characters long</small>
+    }
+    }
+    <div class="my-3">
+        <button class="btn btn-primary mb-2 w-100" type="submit">Submit</button>
+        <small class="text-primary text-center">{{outputMessage}}</small>
+        <small class="text-danger">{{failedAttempts}}</small>
+    </div>
+</form>
