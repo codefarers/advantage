@@ -1,0 +1,10 @@
+<h2 class="text-center fs-1 fw-bold text-muted border-top">Wikipedia Search</h2>
+<div class="d-flex">
+    <input class="form-control" [formControl]="searchFormControl" id="wikiSearch" placeholder="search">
+    <label class="mx-2 text-muted" for="wikiSearch">{{count$ | async}} results</label>
+</div>
+<ul>
+    @for (result of results$ | async; track result){
+    <li class="text-muted">{{result}}</li>
+    }
+</ul>

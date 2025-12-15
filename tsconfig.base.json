@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@angular-demo/bufferInput": ["bufferInput/src/index.ts"],
-      "@angular-demo/ui": ["packages/ui/src/index.ts"]
+      "@angular-demo/ui": ["packages/ui/src/index.ts"],
+      "@myorg/nested/my-lib": ["libs/nested/my-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

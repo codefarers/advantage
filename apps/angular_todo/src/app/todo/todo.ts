@@ -1,13 +1,14 @@
+import { ReactiveInput } from '@angular-demo/bufferInput';
 import { Component, signal, DestroyRef, inject } from '@angular/core';
 import { fromEvent, timer } from 'rxjs';
-import { debounceTime, buffer, tap, throttleTime } from 'rxjs/operators';
+import { buffer, tap, throttleTime } from 'rxjs/operators';
 import { OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BufferInput } from '@angular-demo/bufferInput';
 
 @Component({
   selector: 'app-todo',
-  imports: [BufferInput],
+  imports: [BufferInput, ReactiveInput],
   templateUrl: './todo.html',
   styles: ``,
 })
